@@ -9,10 +9,15 @@ O Edit Field é apenas para filtrar os dados do telegram que realmente importam,
 [imagem agente principal]
 
 O agente principal nesse caso usa o modelo gpt 4.1 mini. Como é um projeto simples, que será executado algumas vezes por dia internamente por um único usuário, uma memória Simple Memory é suficiente. 
+
 A tool Think serve para ajudar o modelo a realizar os cálculos. Estava tendo problemas com o uso correto da tool Calculadora pelo Agente, ele não usava ordens lógicas para cálculos e às vezes apresentava resultados incorretos, a tool think foi a melhor forma que encontrei para diminuir esses erros.
+
 As três tools seguintes são os sub workflows. Como explicado em /docs/01-visao-geral.md o Agente principal nao sabe de nada, sua única função é interagir com o usuário e chamar as tools correspondentes para ter as informações, registrar e confirmar.
+
 O protocolo de comunicação entre os workflows você irá encontrar em /docs/03-com-multi-agents.md
+
 A estrutura dos prompts voce ira encontrar em /docs/06prompt.md
+
 O workflow fecha com o node de enviar mensagem do telegram.
 
 # SUBWORKFLOW CONSULTA PRECOS
@@ -31,8 +36,11 @@ O gatilho aqui é o “When executed by another workflow”, ou seja, quando o a
 [imagem da trigger]
 
 Agora atenção, entenda que o Agente Principal chama o subworkflow com uma string, em /docs/05-erros-e-solucoes.md eu explico o porquê  isso é um problema na hora que o Agente Registro manda esses dados para tabela “Info_Presupuesto”. Então existe a necessidade de fazer um tratamento aqui, o node code.
+
 A função desse code é transformar essa string que vem com todas as informações aglutinadas  em um JSON organizado, com cada campo separado corretamente. O output já sai no formato adequado para o schema do n8n e para o input do Agente Registro.
+
 Depois que isso foi implementado, o workflow passou a registrar os dados na tabela de forma consistente, resolvendo os erros que aconteciam quando tentávamos salvar os valores diretamente a partir da string original.
+
 Para ser sincero, eu não sei nada de JavaScript, estou no básico de Python, mas como a versão do n8n para Python está em beta, não quis arriscar. Então pedi para o Claude me gerar um código e funcionou bem.
 Todos os scripts estão em /docs/04-scripts-node-code.md
 [imagem aggregate]
@@ -47,7 +55,9 @@ Entao o Agente Registro manda para tabela Info_Presupuesto pagina Momentaneo com
 [imagem subworkflow confirmar]
 
 O gatilho aqui é o “When executed by another workflow”, ou seja, quando o agente principal aciona esse subworkflow.
+
 O node seguinte é o “Get Momentaneo” (tabela com os dados temporários)
+
 Os dados do orçamento são extraídos na tabela “momentaneo” e leva para um node code que separa cada detalhe do orçamento em diferentes itens, isso é muito importante para não ter erros em casos do orçamento ser com 2 ou mais móveis.
 [imagem node code]
 
@@ -65,9 +75,12 @@ Isso deve ser repetido e ajustado para cada parametro, [precio 3], [precio 4], [
 [imagem mais exemplos de comandos update doc]
 
 Aqui está um modelo do comando que você pode adaptar para o seu próprio workflow:
+
 {{ $('Code in JavaScript1').item.json.item3_tipo  !== undefined ? $('Code in JavaScript1').item.json.item3_tipo: "" }}
 Então você deve ajustar ele para diferentes contextos, como por exemplo:
+
 {{ $('Code in JavaScript1').item.json.item2_extra_precio !== undefined ? $('Code in JavaScript1').item.json.item2_extra_precio: "" }}
+
 [imagem exemplo de como fica o documento]
 
 Seguindo o fluxo, para converter o .docx em PDF. O node “Share File” dá o acesso ao HTTP Request que realiza a exportação. Depois, o “Upload File” guarda o arquivo na pasta do Drive de preferência
@@ -78,9 +91,13 @@ Para enviar o documento por email é bem simples. Node “Send a Message” do G
 [imagem gmail]
 
 Porque estou mandando por email e não diretamente ao Telegram? Eu tentei, mas aparentemente o node send message do telegram quando usado em subworkflow funciona só quando quer. Muitas vezes nas fases de teste dava erros de autenticação e tratava o restante do fluxo. Não encontrei a solução, decidi colocar o Email.
+
 Por fim, se você leu /docs/01-visao-geral.md sabe que a tabela “Momentâneo” guarda apenas os dados temporários necessários para montar aquele orçamento. Esses dados não devem permanecer ali. Aqui está o motivo:
+
 Na lógica do fluxo, o subworkflow sempre começa extraindo os dados diretamente da tabela “Momentaneo” e enviando tudo para um node code que separa cada item do orçamento. Se essa tabela ainda contiver dados de orçamentos anteriores, o fluxo vai interpretar todas essas informações juntas, como se fossem parte do mesmo pedido. O resultado seria um documento com itens misturados de clientes diferentes (algo completamente incorreto).
+
 Por isso, o segundo node code volta a printar os dados da tabela e salva as informações no “Histórico”, a tabela “Momentaneo” é esvaziada. Assim, ela fica pronta para receber apenas os dados do próximo orçamento, garantindo que cada documento seja gerado de forma limpa e sem contaminação de pedidos anteriores.
+
 [imagem ultima etapa]
 [imagem code]
 
