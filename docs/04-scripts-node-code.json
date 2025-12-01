@@ -1,8 +1,5 @@
-Aqui estão os scripts em Json usados para auxiliar o workflow. Para ser sincero, eu não sei nada de JavaScript, estou no básico de Python, mas como a versão do n8n para Python está em beta, não quis arriscar. Então pedi para o Claude me gerar os códigos e funcionaram bem.
-
-# CODE REGISTRO PRESUPUESTO
-
-A função desse code é transformar essa string que vem com todas as informações aglutinadas  em um JSON organizado, com cada campo separado corretamente. O output já sai no formato adequado para o schema do n8n e para o input do Agente Registro.
+// CODE REGISTRO PRESUPUESTO
+// A função desse code é transformar essa string que vem com todas as informações aglutinadas  em um JSON organizado, com cada campo separado corretamente. O output já sai no formato adequado para o schema do n8n e para o input do Agente Registro.
 Depois que isso foi implementado, o workflow passou a registrar os dados na tabela de forma consistente, resolvendo os erros que aconteciam quando tentávamos salvar os valores diretamente a partir da string original.
 
 // ====== 1. Recupera o texto de forma segura ======
@@ -93,13 +90,10 @@ bloques.forEach((bloque, index) => {
 });
 
 return items;
-
-
 -----------------------
 
-# CODE 01 CONFIRMAR PRESUPUESTO
-
-Os dados do orçamento são extraídos na tabela “momentaneo” e leva para um node code que separa cada detalhe do orçamento em diferentes itens.
+// CODE 01 CONFIRMAR PRESUPUESTO
+// Os dados do orçamento são extraídos na tabela “momentaneo” e leva para um node code que separa cada detalhe do orçamento em diferentes itens.
 
 const items = [];
 
@@ -194,11 +188,10 @@ items.push({ json: clienteData });
 
 return items;
 
-
 ----------------------
 
-# CODE 02 CONFIRMAR PRESUPUESTO
-O segundo node code volta a printar os dados da tabela e salva as informações no “Histórico”. Também cria um id para cada orçamento.
+// CODE 02 CONFIRMAR PRESUPUESTO
+// O segundo node code volta a printar os dados da tabela e salva as informações no “Histórico”. Também cria um id para cada orçamento.
 
 const items = [];
 const inputItems = $input.all();
@@ -230,7 +223,5 @@ inputItems.forEach((item) => {
 });
 
 return items;
-
-
 
 
