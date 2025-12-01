@@ -1,5 +1,5 @@
-// CODE REGISTRO PRESUPUESTO
-// A função desse code é transformar essa string que vem com todas as informações aglutinadas  em um JSON organizado, com cada campo separado corretamente. O output já sai no formato adequado para o schema do n8n e para o input do Agente Registro.
+CODE REGISTRO PRESUPUESTO
+A função desse code é transformar essa string que vem com todas as informações aglutinadas  em um JSON organizado, com cada campo separado corretamente. O output já sai no formato adequado para o schema do n8n e para o input do Agente Registro.
 Depois que isso foi implementado, o workflow passou a registrar os dados na tabela de forma consistente, resolvendo os erros que aconteciam quando tentávamos salvar os valores diretamente a partir da string original.
 
 // ====== 1. Recupera o texto de forma segura ======
