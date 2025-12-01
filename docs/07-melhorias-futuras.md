@@ -42,9 +42,4 @@ Nesse caso, o Agente receberá:
 
 Tudo junto em um único input consolidado, sem tool calls.
 
-# DIAGRAMA VISUAL DA MELHORIA
-
-
-
-
 
