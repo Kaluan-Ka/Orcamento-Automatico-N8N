@@ -1,7 +1,9 @@
-Por enquanto, a única melhorias que gostaria de implementar nesse workflow está relacionado a redução da margem de erro em ERRO NA APRESENTAÇÃO DE PREÇO DE MOVEIS ESPECÍFICOS (/docs/05-erros-e-solucoes.md) 
+Por enquanto, a única melhorias que gostaria de implementar nesse workflow está relacionado a redução da margem de erro em ERRO NA APRESENTAÇÃO DE PREÇO DE MOVEIS ESPECÍFICOS [05 - erros e solucoes](05-erros-e-solucoes.md) 
 Por vezes, o Agente Consulta Precios erra na resposta sobre preços de alguns móveis. Ocorre em uma média de uma vez a cada dez.
 
-[imagem subworkflow de Consulta Precios]
+
+![imagem subworkflow de Consulta Precios](../assets/imagens/subworklow-consulta.png)
+
 
 Acredito que o problema está no output do Agente. Quando o banco de dados está como uma tool do Agente, a consulta na tool é parte do output, que pode ocorrer erros.
 
