@@ -14,19 +14,30 @@ Em uma breve conversa com o dono de uma carpintaria de Buenos Aires, diagnostica
 Com esta solução, tudo ficou mais simples. O usuário (pessoa responsável pela criação do orçamento) manda um mensagem no Telegram para um Bot (Agente de IA criado especialmente para o projeto) dizendo “quero criar um novo orçamento”, e com uma breve interação com o bot, o orçamento é criado e o documento em pdf é gerado, tudo resolvido entre 3 a 5 minutos.
 
 # Pré-requisitos
+
 Para criar este workflow foi preciso:
+
 N8N instalado;
+
 Criação de um bot no Telegram; 
+
 Estruturação do banco de dados da carpinteria (Google Sheets);
+
 APIs do Google Drive e Gmail;
+
 API da Open AI para o chat model (GPT 4.1 mini) do AI Agent.
 
 # Como está organizado o repositório
+
 /docs/
+
 . Documentação explicando cada parte do fluxo
+
 . Inclui visão geral, explicações node-por-node, erros e soluções encontrados, etc.
+
 . É onde está o contexto técnico do projeto.
 
 /assets/
+
 . Imagens usados na documentação 
 
