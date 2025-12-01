@@ -1,0 +1,88 @@
+// ====== 1. Recupera o texto de forma segura ======
+const input = $input.first().json;
+const possibleFields = ["text", "mensagem", "message", "contenido", "raw", "prompt", "output"];
+let text = "";
+
+for (const field of possibleFields) {
+  if (input[field]) {
+    text = input[field];
+    break;
+  }
+}
+
+if (!text) {
+  for (const key in input) {
+    if (typeof input[key] === "string") {
+      text = input[key];
+      break;
+    }
+  }
+}
+
+if (!text) {
+  throw new Error("❌ Nenhum campo de texto encontrado no input. Verifique qual campo contém a mensagem do agente.");
+}
+
+// ====== 2. Função segura de extração com regex ======
+function extract(pattern, str) {
+  if (!str || typeof str !== "string") return "";
+  const match = str.match(pattern);
+  return match ? match[1].trim() : "";
+}
+
+// ====== 3. Extrai nome do cliente ======
+const cliente = extract(/Cliente:\s*(.+)/i, text);
+
+// ====== 4. Extrai envío global (o último que aparece no texto) ======
+const envioMatches = text.match(/Envío e instalación:\s*\$?\s*([\d.,]+)/gi);
+let envioGlobal = "";
+if (envioMatches && envioMatches.length > 0) {
+  // Pega o ÚLTIMO match
+  const ultimoEnvio = envioMatches[envioMatches.length - 1];
+  envioGlobal = extract(/Envío e instalación:\s*\$?\s*([\d.,]+)/i, ultimoEnvio);
+}
+
+// ====== 5. Detecta múltiplos muebles ======
+let bloques;
+if (/Mueble\s*\d+:/i.test(text)) {
+  // Divide por "Mueble X:"
+  bloques = text.split(/Mueble\s*\d+:/i).slice(1);
+} else {
+  // Só um mueble - pega tudo após "Cliente:"
+  bloques = [text];
+}
+
+const items = [];
+
+bloques.forEach((bloque, index) => {
+  // Extrai cada campo individualmente
+  const mueble = extract(/Mueble:\s*(.+)/i, bloque);
+  const ancho = extract(/Ancho:\s*([\d.,]+)/i, bloque);
+  const alto = extract(/Alto:\s*([\d.,]+)/i, bloque);
+  const profundidad = extract(/Profundidad:\s*([\d.,]+)/i, bloque);
+  const material = extract(/Material:\s*(.+)/i, bloque);
+  const adicionales = extract(/Adicionales:\s*(.+)/i, bloque);
+  const precioMueble = extract(/Precio Mueble:\s*\$?\s*([\d.,]+)/i, bloque);
+  const precioExtra = extract(/Precio Extra:\s*\$?\s*([\d.,]+)/i, bloque);
+  
+  // Usa o envío global extraído anteriormente
+  const envio = envioGlobal || "";
+
+  items.push({
+    json: {
+      CLIENTE: cliente || "",
+      ITEM: index + 1,
+      TIPO_MUEBLE: mueble || "",
+      ANCHO: ancho || "",
+      ALTO: alto || "",
+      PROFUNDIDAD: profundidad || "",
+      MATERIAL: material || "",
+      ADICIONALES: adicionales || "",
+      PRECIO_MUEBLE: precioMueble || "",
+      PRECIO_EXTRA: precioExtra || "",
+      ENVIO_INSTALACION: envio
+    }
+  });
+});
+
+return items;
