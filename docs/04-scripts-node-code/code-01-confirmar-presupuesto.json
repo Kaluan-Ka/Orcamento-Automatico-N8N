@@ -1,0 +1,92 @@
+const items = [];
+
+// Agrupa os itens por cliente
+const clienteData = {
+  cliente: "",
+  envioInstalacion: 0,
+  precioTotal: 0,
+  // Inicializa todos os 4 itens possíveis como vazios
+  item1_tipo: "",
+  item1_ancho: "",
+  item1_profundidad: "",
+  item1_altura: "",
+  item1_material: "",
+  item1_adicionales: "",
+  item1_precio: "",
+  item1_material_extra: "",
+  item1_extra_precio: "",
+  
+  item2_tipo: "",
+  item2_ancho: "",
+  item2_profundidad: "",
+  item2_altura: "",
+  item2_material: "",
+  item2_adicionales: "",
+  item2_precio: "",
+  item2_material_extra: "",
+  item2_extra_precio: "",
+  
+  item3_tipo: "",
+  item3_ancho: "",
+  item3_profundidad: "",
+  item3_altura: "",
+  item3_material: "",
+  item3_adicionales: "",
+  item3_precio: "",
+  item3_material_extra: "",
+  item3_extra_precio: "",
+  
+  item4_tipo: "",
+  item4_ancho: "",
+  item4_profundidad: "",
+  item4_altura: "",
+  item4_material: "",
+  item4_adicionales: "",
+  item4_precio: "",
+  item4_material_extra: "",
+  item4_extra_precio: ""
+};
+
+const inputItems = $input.all();
+
+if (inputItems.length > 0) {
+  // Pega o nome do cliente do primeiro item
+  clienteData.cliente = inputItems[0].json["NOMBRE CLIENTE"] || "";
+  
+  // Preenche apenas os itens que existem
+  inputItems.forEach((item, index) => {
+    const itemNum = index + 1;
+    
+    if (itemNum <= 4) {
+      clienteData[`item${itemNum}_tipo`] = item.json["TIPO MUEBLE"] || "";
+      clienteData[`item${itemNum}_ancho`] = item.json["ANCHO"] || "";
+      clienteData[`item${itemNum}_profundidad`] = item.json["PRODUNIDAD"] || "";
+      clienteData[`item${itemNum}_altura`] = item.json["ALTURA"] || "";
+      clienteData[`item${itemNum}_material`] = item.json["MATERIAL"] || "";
+      clienteData[`item${itemNum}_adicionales`] = item.json["ADICIONALES"] || "";
+      clienteData[`item${itemNum}_precio`] = item.json["PRECIO"] ? `$${item.json["PRECIO"].toLocaleString('es-AR')}` : "";
+       clienteData[`item${itemNum}_material_extra`] = item.json["MATERIAL EXTRA"] || "";
+
+      clienteData[`item${itemNum}_extra_precio`] = item.json["PRECIO ADICIONAL"] ? `$${item.json["PRECIO ADICIONAL"].toLocaleString('es-AR')}` : "";
+      
+      // Soma o envio apenas uma vez (do primeiro item)
+      if (index === 0) {
+        clienteData.envioInstalacion = item.json["Envio e Instalacion"] || 0;
+      }
+      
+      // Soma os preços
+   clienteData.precioTotal += (item.json["PRECIO"] || 0) + (item.json["PRECIO ADICIONAL"] || 0);
+    }
+  });
+  
+  // Adiciona envio ao total
+  clienteData.precioTotal += clienteData.envioInstalacion;
+  
+  // Formata valores monetários
+  clienteData.envioInstalacion = `$${clienteData.envioInstalacion.toLocaleString('es-AR')}`;
+  clienteData.precioTotal = `$${clienteData.precioTotal.toLocaleString('es-AR')}`;
+}
+
+items.push({ json: clienteData });
+
+return items;
