@@ -1,5 +1,5 @@
 # Uma breve passagem pelo fluxo geral do processo
-![Agente Principal](../assets/imagens/agente-principal.png)
+![Agente Principal](../assets/imagens/workflow-principal.png)
 
 1. O usuário envia a mensagem para o bot no Telegram, esse é o Trigger. 
 
