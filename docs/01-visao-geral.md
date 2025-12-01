@@ -1,5 +1,5 @@
 # Uma breve passagem pelo fluxo geral do processo
-Orccamento-Automatico-N8N/assets/imagens/agente-principal.png
+Orcamento-Automatico-N8N/assets/imagens/agente-principal.png
 
 1. O usuário envia a mensagem para o bot no Telegram, esse é o Trigger. 
 2. Um node set para separar dois campos de dados: message e chat_ID.
