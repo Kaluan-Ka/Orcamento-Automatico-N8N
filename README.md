@@ -27,9 +27,6 @@ API da Open AI para o chat model (GPT 4.1 mini) do AI Agent.
 . Inclui visão geral, explicações node-por-node, erros e soluções encontrados, etc.
 . É onde está o contexto técnico do projeto.
 
-/examples/
-. Exemplos reais de interações entre usuário e bot.
-
 /assets/
 . Imagens usados na documentação 
 
