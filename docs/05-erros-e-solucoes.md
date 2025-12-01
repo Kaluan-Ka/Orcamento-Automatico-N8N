@@ -1,4 +1,4 @@
-Alguns erros e bugs foram encontrados durante o desenvolvimento do projeto. A maioria resolvidos com o protocolo de comunicação entre os agentes que você pode encontrar em /docs/03-com-multi-agents.md
+Alguns erros e bugs foram encontrados durante o desenvolvimento do projeto. A maioria resolvidos com o protocolo de comunicação entre os agentes que você pode encontrar em [03 - comunicacao multi agents](03-com-multi-agents.md)
 
 # ERRO DE AUTENTICAÇÃO APIS DO GOOGLE
 
@@ -17,13 +17,13 @@ Alguns erros e bugs foram encontrados durante o desenvolvimento do projeto. A ma
 
 (Erro) O Agente Principal manda múltiplas solicitações ao subworkflow Consulta Precios, e causa inconsistência nas respostas ao usuário, além de provocar interações desnecessárias.
 
-(Solução) Criação do protocolo de comunicação para o Agente Principal mandar a solicitação em um único input (verificar /docs/03-com-multi-agents.md)
+(Solução) Criação do protocolo de comunicação para o Agente Principal mandar a solicitação em um único input (verificar [03 - comunicacao multi agents](03-com-multi-agents.md))
 
 # ERRO REGISTRO DAS INFORMAÇÕES DO ORÇAMENTO
 
 (Erro) O Agente principal manda as informações sem padrão. Isso causa inconsistência no trabalho do Agente Registro Presupuesto.
 
-(Solução) Criação de protocolo de comunicação entre os agentes. O Agente Principal deve mandar as informações em formato específico (verificar /docs/03-com-multi-agents.md). No subworkflow Registro Presupuesto,  um node code recebe o input em string do Agente Principal. A função desse code é transformar essa string que vem com todas as informações aglutinadas  em um JSON organizado, com cada campo separado corretamente. O output já sai no formato adequado para o schema do n8n e para o input do Agente Registro.
+(Solução) Criação de protocolo de comunicação entre os agentes. O Agente Principal deve mandar as informações em formato específico(verificar [03 - comunicacao multi agents](03-com-multi-agents.md)). No subworkflow Registro Presupuesto,  um node code recebe o input em string do Agente Principal. A função desse code é transformar essa string que vem com todas as informações aglutinadas  em um JSON organizado, com cada campo separado corretamente. O output já sai no formato adequado para o schema do n8n e para o input do Agente Registro.
 
 # ERRO APRESENTAÇÃO DO CÁLCULO
 
@@ -42,7 +42,7 @@ Alguns erros e bugs foram encontrados durante o desenvolvimento do projeto. A ma
 
 (Erro) Por vezes, o Agente Consulta Precios erra na resposta sobre preços de alguns móveis. Ocorre em uma média de uma vez a cada dez.
 
-(Solução) Ainda não testei, é algo que quero tentar em /docs/07-melhorias-futuras.md
+(Solução) Ainda não testei, é algo que quero tentar em [07 - melhorias futuras](07-melhorias-futuras.md)
 
 
   
