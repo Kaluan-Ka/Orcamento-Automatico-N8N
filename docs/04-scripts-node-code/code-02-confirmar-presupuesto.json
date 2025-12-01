@@ -1,0 +1,28 @@
+const items = [];
+const inputItems = $input.all();
+
+// Gera um ID único para este orçamento
+const orcamentoId = `ORC-${Date.now()}`;
+const fecha = new Date().toLocaleDateString('es-AR');
+
+// Para cada item do orçamento, cria uma linha para o histórico
+inputItems.forEach((item) => {
+  items.push({ 
+    json: {
+      "ID_ORCAMENTO": orcamentoId,
+      "FECHA": fecha,
+      "row_number": item.json["row_number"] || "",
+      "NOMBRE CLIENTE": item.json["NOMBRE CLIENTE"] || "",
+      "TIPO MUEBLE": item.json["TIPO MUEBLE"] || "",
+      "ANCHO": item.json["ANCHO"] || "",
+      "PRODUNIDAD": item.json["PRODUNIDAD"] || "",
+      "ALTURA": item.json["ALTURA"] || "",
+      "MATERIAL": item.json["MATERIAL"] || "",
+      "ADICIONALES": item.json["ADICIONALES"] || "",
+      "MATERIAL EXTRA": item.json["MATERIAL EXTRA"] || "",
+      "PRECIO ADICIONAL": item.json["PRECIO ADICIONAL"] || "",
+      "Envio e Instalacion": item.json["Envio e Instalacion"] || "",
+      "PRECIO": item.json["PRECIO"] || ""
+    }
+  });
+});
