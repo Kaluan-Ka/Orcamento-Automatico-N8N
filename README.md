@@ -1,4 +1,4 @@
-# Orcamento-Automatico-N8N
+# Orçamento-Automatico-N8N
  Geração de orçamento automáticos feito no N8N, nesse caso, foi feito para uma carpinteria de Buenos Aires, mas pode ser adaptado para diferentes contextos. 
 
 Este repositório não irá fornecer o template em json do projeto, ele serve tanto como documentação pessoal do projeto, tanto para ajudar a estudantes de N8N que queiram melhorar de forma ética na plataforma. Por tanto, aqui você vai encontrar os problemas que encontrei pelo caminho, as soluções e oque eu penso fazer diferente em projetos semelhantes no futuro.
