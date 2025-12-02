@@ -21,7 +21,7 @@ Então o usuário manda uma mensagem para bot dizendo que quer criar um novo or�
 ![imagem subworkflow registro](../assets/imagens/subworkflow-registro.png)
 
 Ok, então o usuário já mandou os dados, o Agente Principal já verificou com o subworkflow os preços, já calculou e mandou ao usuário o detalhe completo do orçamento pelo Telegram. 
-O seguinte passo cabe ao usuário verificar se tudo parece bem. Logo após a verificação feita, o usuário diz “registrar presupuesto” e Eero chama ao subworkflow “Registro de Presupuesto”.
+O seguinte passo cabe ao usuário verificar se tudo parece bem. Logo após a verificação feita, o usuário diz “registrar presupuesto” e o Agente Principal chama ao subworkflow “Registro de Presupuesto”.
 
 1. O Agente Principal manda toda a informação em um único prompt em string ao subworkflow.
 2. O node code serve para separar as informações que vem em string, em dados separados em uma tabela. O motivo de fazer isso você vai entender no arquivo [02 - Node por Node](02-node-por-node.md)
