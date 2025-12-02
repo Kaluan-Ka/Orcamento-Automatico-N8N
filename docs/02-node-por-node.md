@@ -60,7 +60,7 @@ A função desse code é transformar essa string que vem com todas as informaç�
 Depois que isso foi implementado, o workflow passou a registrar os dados na tabela de forma consistente, resolvendo os erros que aconteciam quando tentávamos salvar os valores diretamente a partir da string original.
 
 Para ser sincero, eu não sei nada de JavaScript, estou no básico de Python, mas como a versão do n8n para Python está em beta, não quis arriscar. Então pedi para o Claude me gerar um código e funcionou bem.
-Todos os scripts estão em [04 - scripts](04-scripts-node-code.md)
+Todos os scripts estão em [04 - scripts](04-scripts-node-code)
 
 O node aggregate serve para juntar os dados que vem do code para facilitar o input do Agente Registro.
 
@@ -121,10 +121,10 @@ Seguindo o fluxo, para converter o .docx em PDF. O node “Share File” dá o a
 pasta do Drive de preferência
 
 
-[Imagem Share File](../assets/imagens/crea-documento-pdf.png)
+![Imagem Share File](../assets/imagens/crea-documento-pdf.png)
 
 
-![Imagem HTTP Request](assets/imagens/http-request.png)
+![Imagem HTTP Request](../assets/imagens/http-request.png)
 
 
 Para enviar o documento por email é bem simples. Node “Send a Message” do Gmail, nos campos subject e message, basta arrastar o json correspondente ao documento gerado.
