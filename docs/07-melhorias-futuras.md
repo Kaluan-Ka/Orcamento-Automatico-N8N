@@ -20,7 +20,7 @@ As tabelas completas, já carregadas em nodes anteriores.
 Ou seja:
 O agente não “consulta uma tool”.
  Ele simplesmente lê dados já disponíveis no input.
- Isso reduz drasticamente a chance de erro.
+ Isso reduz a chance de erro.
 
 # Analogia simples
 
