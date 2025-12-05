@@ -1,12 +1,12 @@
 # Orçamento-Automatico-N8N
- Geração de orçamento automáticos feito no N8N, nesse caso, foi feito para uma carpinteria de Buenos Aires, mas pode ser adaptado para diferentes contextos. 
+ Geração de orçamento automático feito no N8N, nesse caso, foi feito para uma carpinteria de Buenos Aires, mas pode ser adaptado para diferentes contextos. 
 
 Este repositório não irá fornecer o template em json do projeto, ele serve tanto como documentação pessoal do projeto, tanto para ajudar a estudantes de N8N que queiram melhorar de forma ética na plataforma. Por tanto, aqui você vai encontrar os problemas que encontrei pelo caminho, as soluções e oque eu penso fazer diferente em projetos semelhantes no futuro.
 
 Se você se interessou por este projeto, ficou com alguma dúvida ou tem alguma recomendação para que eu possa melhorar e seguir evoluindo, por favor se comunique comigo mandando um email em kaluanatuomate@gmail.com
 
 ## O que é?
-Esse é um workflow de geração de orçamento automáticos feito no N8N, nesse caso, foi feito para uma carpinteria de Buenos Aires, mas pode ser adaptado para diferentes contextos. 
+Esse é um workflow de geração de orçamento automático feito no N8N, nesse caso, foi feito para uma carpinteria de Buenos Aires, mas pode ser adaptado para diferentes contextos. 
 
 # O que ele resolve?
 Em uma breve conversa com o dono de uma carpintaria de Buenos Aires, diagnosticamos que eles perdem muito tempo na criação e geração do documento de orçamentos para passar para aos seus clientes. Horas da semana eram perdidas nessa parte operativa que gerava uma despesa “invisível” para o negócio.
